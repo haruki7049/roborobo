@@ -44,7 +44,7 @@
             buildInputs = bevyengine-dependencies;
             nativeBuildInputs = [ pkgs.pkg-config ];
           };
-          kosu = craneLib.buildPackage {
+          roborobo = craneLib.buildPackage {
             inherit src cargoArtifacts;
             strictDeps = true;
             buildInputs = bevyengine-dependencies;
@@ -104,17 +104,17 @@
 
           packages = {
             inherit
-              kosu
+              roborobo
               llvm-cov
               llvm-cov-text
               ;
-            default = kosu;
+            default = roborobo;
             doc = cargo-doc;
           };
 
           checks = {
             inherit
-              kosu
+              roborobo
               cargo-clippy
               cargo-doc
               llvm-cov
