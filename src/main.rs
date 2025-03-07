@@ -1,11 +1,7 @@
-use bevy::prelude::{App, Update};
+use bevy::prelude::{App, DefaultPlugins};
 
 fn main() {
    App::new()
-       .add_systems(Update, hello_world_system)
+       .add_plugins(DefaultPlugins)
        .run();
-}
-
-fn hello_world_system() {
-   println!("hello world");
 }
