@@ -1,3 +1,11 @@
+use bevy::prelude::{App, Update};
+
 fn main() {
-    println!("Hello, world!");
+   App::new()
+       .add_systems(Update, hello_world_system)
+       .run();
+}
+
+fn hello_world_system() {
+   println!("hello world");
 }
