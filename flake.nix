@@ -38,7 +38,7 @@
           overlays = [ inputs.rust-overlay.overlays.default ];
           rust = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
           craneLib = (inputs.crane.mkLib pkgs).overrideToolchain rust;
-          src = craneLib.cargoCleanSource ./.;
+          src = craneLib.cleanCargoSource ./.;
           cargoArtifacts = craneLib.buildDepsOnly {
             inherit src;
             buildInputs = bevyengine-dependencies;
