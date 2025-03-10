@@ -6,3 +6,4 @@ edition = "2024"
 [dependencies]
 avian2d = "0.2.1"
 bevy = "0.15.3"
+bevy_vello = "0.7.0"
