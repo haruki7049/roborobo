@@ -9,7 +9,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_plugins(VelloPlugin::default())
         .add_systems(Startup, setup)
-        .add_systems(Update, (keyboard_input_system, keyboard_log))
+        .add_systems(Update, (keyboard_input_system, keyboard_log, detect_keys))
         .add_systems(Startup, setup_ui)
         .run();
 }
@@ -36,6 +36,13 @@ fn setup_ui(mut commands: Commands) {
     ));
 }
 
-fn keyboard_log(keyboard: Res<ButtonInput<KeyCode>>) {
-    debug!("keyboard: {:?}", keyboard.get_pressed().collect::<Vec<_>>());
+fn keyboard_log(keys: Res<ButtonInput<KeyCode>>) {
+    debug!("keyboard: {:?}", keys.get_pressed().collect::<Vec<_>>());
+}
+
+fn detect_keys(keys: Res<ButtonInput<KeyCode>>, mut exit: EventWriter<AppExit>) {
+    if keys.pressed(KeyCode::KeyQ) {
+        debug!("GAME terminating...");
+        exit.send(AppExit::Success);
+    }
 }
