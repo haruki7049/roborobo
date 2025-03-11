@@ -1,7 +1,7 @@
 use bevy::color::palettes::css;
-use bevy::prelude::*;
 use bevy::input::keyboard::keyboard_input_system;
-use bevy_vello::{VelloPlugin, prelude::*};
+use bevy::prelude::*;
+use bevy_vello::{prelude::*, VelloPlugin};
 use log::debug;
 
 fn main() {
