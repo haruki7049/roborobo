@@ -64,22 +64,6 @@
             buildInputs = bevyengine-dependencies;
             nativeBuildInputs = [ pkgs.pkg-config ];
           };
-          llvm-cov-text = craneLib.cargoLlvmCov {
-            inherit cargoArtifacts src;
-            buildInputs = bevyengine-dependencies;
-            nativeBuildInputs = [ pkgs.pkg-config ];
-            cargoExtraArgs = "--locked";
-            cargoLlvmCovCommand = "test";
-            cargoLlvmCovExtraArgs = "--text --output-dir $out";
-          };
-          llvm-cov = craneLib.cargoLlvmCov {
-            inherit cargoArtifacts src;
-            buildInputs = bevyengine-dependencies;
-            nativeBuildInputs = [ pkgs.pkg-config ];
-            cargoExtraArgs = "--locked";
-            cargoLlvmCovCommand = "test";
-            cargoLlvmCovExtraArgs = "--html --output-dir $out";
-          };
 
           bevyengine-dependencies = lib.optional pkgs.stdenv.isLinux [
             pkgs.udev
@@ -105,8 +89,6 @@
           packages = {
             inherit
               roborobo
-              llvm-cov
-              llvm-cov-text
               ;
             default = roborobo;
             doc = cargo-doc;
@@ -117,8 +99,6 @@
               roborobo
               cargo-clippy
               cargo-doc
-              llvm-cov
-              llvm-cov-text
               ;
           };
 
