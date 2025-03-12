@@ -18,24 +18,6 @@ fn setup(mut commands: Commands) {
     commands.spawn(Camera2d::default());
 }
 
-fn setup_ui(mut commands: Commands) {
-    let one_third = Val::Percent(100.0 / 3.0);
-    commands.spawn((
-        Node {
-            position_type: PositionType::Absolute,
-            left: one_third,
-            top: one_third,
-            width: one_third,
-            height: one_third,
-            border: UiRect::all(Val::Px(2.0)),
-            ..default()
-        },
-        BorderColor(css::FUCHSIA.with_alpha(0.5).into()),
-        Interaction::default(),
-        VelloScene::new(),
-    ));
-}
-
 fn keyboard_log(keys: Res<ButtonInput<KeyCode>>) {
     debug!("keyboard: {:?}", keys.get_pressed().collect::<Vec<_>>());
 }
