@@ -7,7 +7,10 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_systems(Startup, setup)
         .insert_state(UiVisibleState::Visible)
-        .add_systems(Update, (keyboard_input_system, keyboard_log, detect_keys, state_log))
+        .add_systems(
+            Update,
+            (keyboard_input_system, keyboard_log, detect_keys, state_log),
+        )
         .run();
 }
 
@@ -40,9 +43,7 @@ fn detect_keys(
     }
 }
 
-fn state_log(
-    state: Res<State<UiVisibleState>>
-) {
+fn state_log(state: Res<State<UiVisibleState>>) {
     debug!("UiVisibleState: {:?}", state.get());
 }
 
