@@ -6,14 +6,7 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_systems(Startup, setup)
-        .add_systems(
-            Update,
-            (
-                keyboard_input_system,
-                keyboard_log,
-                detect_keys,
-            ),
-        )
+        .add_systems(Update, (keyboard_input_system, keyboard_log, detect_keys))
         .run();
 }
 
@@ -26,10 +19,7 @@ fn keyboard_log(keys: Res<ButtonInput<KeyCode>>) {
     debug!("keyboard: {:?}", keys.get_pressed().collect::<Vec<_>>());
 }
 
-fn detect_keys(
-    keys: Res<ButtonInput<KeyCode>>,
-    mut exit: EventWriter<AppExit>,
-) {
+fn detect_keys(keys: Res<ButtonInput<KeyCode>>, mut exit: EventWriter<AppExit>) {
     if keys.pressed(KeyCode::Escape) {
         debug!("GAME terminating...");
         exit.send(AppExit::Success);
