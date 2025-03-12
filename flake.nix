@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    systems.url = "github:nix-systems/default-linux";
+    systems.url = "github:nix-systems/default";
     crane.url = "github:ipetkov/crane";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts = {
@@ -81,20 +81,20 @@
             cargoLlvmCovExtraArgs = "--html --output-dir $out";
           };
 
-          bevyengine-dependencies = with pkgs; [
-            udev
-            alsa-lib
-            vulkan-loader
+          bevyengine-dependencies = lib.optional pkgs.stdenv.isLinux [
+            pkgs.udev
+            pkgs.alsa-lib
+            pkgs.vulkan-loader
 
             # To use the x11 feature
-            xorg.libX11
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXrandr
+            pkgs.xorg.libX11
+            pkgs.xorg.libXcursor
+            pkgs.xorg.libXi
+            pkgs.xorg.libXrandr
 
             # To use the wayland feature
-            libxkbcommon
-            wayland
+            pkgs.libxkbcommon
+            pkgs.wayland
           ];
         in
         {
