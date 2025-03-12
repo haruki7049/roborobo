@@ -65,7 +65,7 @@
             nativeBuildInputs = [ pkgs.pkg-config ];
           };
 
-          bevyengine-dependencies = lib.optional pkgs.stdenv.isLinux [
+          bevyengine-dependencies = lib.optionals pkgs.stdenv.isLinux [
             pkgs.udev
             pkgs.alsa-lib
             pkgs.vulkan-loader
