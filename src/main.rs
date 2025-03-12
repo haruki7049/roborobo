@@ -1,16 +1,12 @@
-use bevy::color::palettes::css;
 use bevy::input::keyboard::keyboard_input_system;
 use bevy::prelude::*;
-use bevy_vello::{prelude::*, VelloPlugin};
 use log::debug;
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_plugins(VelloPlugin::default())
         .add_systems(Startup, setup)
         .add_systems(Update, (keyboard_input_system, keyboard_log, detect_keys))
-        .add_systems(Startup, setup_ui)
         .run();
 }
 
