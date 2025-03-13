@@ -10,7 +10,6 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_systems(Startup, setup)
         // For keyboard systems
-        .add_systems(Update, bevy::input::keyboard::keyboard_input_system)
         .add_systems(Update, keyboard_log)
         .add_systems(Update, observe_quit_key_system)
         // For UI systems
@@ -91,7 +90,7 @@ fn switch_ui_system(
     mut query: Query<&mut Visibility, With<Button>>,
 ) {
     if keys.just_pressed(KeyCode::Escape) {
-        info!("Switching UI's visibility...");
+        debug!("Switching UI's visibility...");
 
         for mut ui in query.iter_mut() {
             ui.toggle_visible_hidden();
