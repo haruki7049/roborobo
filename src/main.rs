@@ -52,12 +52,15 @@ fn keyboard_log(keys: Res<ButtonInput<KeyCode>>) {
     debug!("keyboard: {:?}", keys.get_pressed().collect::<Vec<_>>());
 }
 
-fn observe_quit_key_system(keys: Res<ButtonInput<KeyCode>>, mut exit: EventWriter<AppExit>) {
-    if keys.pressed(KeyCode::KeyQ)
-        && (keys.pressed(KeyCode::ShiftLeft) || keys.pressed(KeyCode::ShiftRight))
-    {
-        debug!("GAME terminating...");
-        exit.send(AppExit::Success);
+fn observe_quit_key_system(mut query: Query<&Interaction, With<Button>>, mut exit: EventWriter<AppExit>) {
+    for interaction in &mut query {
+        match *interaction {
+            Interaction::Pressed => {
+                debug!("GAME terminating...");
+                exit.send(AppExit::Success);
+            }
+            _ => {}
+        }
     }
 }
 
