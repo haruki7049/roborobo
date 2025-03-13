@@ -11,7 +11,7 @@ fn main() {
         .add_systems(Startup, setup)
         // For keyboard systems
         .add_systems(Update, keyboard_log)
-        .add_systems(Update, observe_quit_key_system)
+        .add_systems(Update, observe_quit_button_system)
         // For UI systems
         .add_systems(Update, switch_ui_system)
         .add_systems(Update, button_system)
@@ -43,7 +43,7 @@ fn setup(mut commands: Commands) {
                 BorderColor(Color::BLACK),
                 BorderRadius::MAX,
                 BackgroundColor(NORMAL_BUTTON),
-                Visibility::Visible,
+                Visibility::Hidden,
             ));
         });
 }
@@ -52,7 +52,7 @@ fn keyboard_log(keys: Res<ButtonInput<KeyCode>>) {
     debug!("keyboard: {:?}", keys.get_pressed().collect::<Vec<_>>());
 }
 
-fn observe_quit_key_system(mut query: Query<&Interaction, With<Button>>, mut exit: EventWriter<AppExit>) {
+fn observe_quit_button_system(mut query: Query<&Interaction, With<Button>>, mut exit: EventWriter<AppExit>) {
     for interaction in &mut query {
         match *interaction {
             Interaction::Pressed => {
