@@ -120,7 +120,11 @@
 
           devShells.default = pkgs.mkShell rec {
             buildInputs = bevyengine-dependencies ++ [
+              # Rust
               rust
+              pkgs.trunk
+
+              # Nix
               pkgs.nil
             ];
 
