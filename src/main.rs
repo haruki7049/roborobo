@@ -90,7 +90,7 @@ fn switch_ui_system(
     keys: Res<ButtonInput<KeyCode>>,
     mut query: Query<&mut Visibility, With<Button>>,
 ) {
-    if keys.just_pressed(KeyCode::Space) {
+    if keys.just_pressed(KeyCode::Escape) {
         info!("Switching UI's visibility...");
 
         for mut ui in query.iter_mut() {
