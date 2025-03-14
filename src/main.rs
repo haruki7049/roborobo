@@ -51,7 +51,10 @@ fn keyboard_log(keys: Res<ButtonInput<KeyCode>>) {
     debug!("keyboard: {:?}", keys.get_pressed().collect::<Vec<_>>());
 }
 
-fn observe_quit_button_system(mut query: Query<&Interaction, With<Button>>, mut exit: EventWriter<AppExit>) {
+fn observe_quit_button_system(
+    mut query: Query<&Interaction, With<Button>>,
+    mut exit: EventWriter<AppExit>,
+) {
     for interaction in &mut query {
         match *interaction {
             Interaction::Pressed => {
