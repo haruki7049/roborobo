@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use log::debug;
 
 const NORMAL_BUTTON: Color = Color::srgb(0.15, 0.15, 0.15);
 const HOVERED_BUTTON: Color = Color::srgb(0.25, 0.25, 0.25);
